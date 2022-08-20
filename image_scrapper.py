@@ -58,7 +58,7 @@ def image_url_downloader(image_url_list,download_location='photos',img_format = 
             break
 
         save_file(url = urls,file_name=str(img_position)+img_format,file_path='./'+download_location)
-        print('Downloaded image number: '+str(img_position+1))
+        
 
 
 def image_scrapper(subject,download_location = 'photos'):

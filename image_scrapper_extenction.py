@@ -28,7 +28,7 @@ def photo_cropper(folder_name='photos',image_limit=10):
                 photo = photo.resize(size=bg.size,) 
                 
                 photo.save(photos.replace('./'+folder_name+'/','./'+'cropped_photos'+'/'))
-            print('Cropped photo number: '+ str(number+1))
+            
     
 
 if __name__ == '__main__':

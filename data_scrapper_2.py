@@ -1,21 +1,17 @@
 from image_scrapper import folder_renewer
 import wikipedia
 from gtts import gTTS
-import os
+
+
+
+def subject_suggestor(subject):
+    while wikipedia.suggest(subject):
+        subject = wikipedia.suggest(subject)
+    return subject
+
 
 def summary_extractor(subject,max_sentences=4):
-
-    if wikipedia.search(subject):
-
-        if type(wikipedia.search(subject))==str():
-            #Replaces the subject with top search results of the topic to prevent any PageNotFOund Error
-            subject=wikipedia.search(subject)
-
-        elif type(wikipedia.search(subject))==list():
-            subject= wikipedia.search(subject)[0]
-
     try:
-
         summary = wikipedia.summary(subject,sentences=max_sentences)
         #Number of sentences determines the length of summary
         return summary
@@ -56,20 +52,19 @@ def summary_filter(summary_text):
     return summary_text
 
 
-def data_scrapper(subject,summary = None):
+def text_to_audio(text):
+    folder_renewer('speech')
+    text = summary_filter(text)
+    text_to_speech = gTTS(text,tld='co.in',lang='hi')
+    text_to_speech.save('./speech/speech.mp3')   
+    
+
+def data_scrapper(subject):
     try:
-        folder_renewer('speech')
-        if summary == None:
-            summary = summary_extractor(subject)
-
-        summary = summary_filter(summary)
-
-        text_to_speech = gTTS(summary,tld='co.in',lang='hi')
-        text_to_speech.save('./speech/speech.mp3')
-        
-        print('Installed a audio version!')
-
-        return summary
+        subject = subject_suggestor(subject)
+        summary = summary_extractor(subject)
+        text_to_audio(summary)
+        return subject
     except Exception as err:
         print(err)
 

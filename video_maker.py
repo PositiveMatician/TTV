@@ -1,4 +1,5 @@
 
+from asyncio.log import logger
 import os
 from moviepy.editor import *
 from image_scrapper import folder_renewer
@@ -16,7 +17,7 @@ def video_maker(subject,source_folder_location='cropped_photos',destination_fold
 
     audio_clip = AudioFileClip('./speech/speech.mp3')
     
-    print('taking the photos')
+    
 
     duration = [5]#Duration of each images 
 
@@ -28,10 +29,10 @@ def video_maker(subject,source_folder_location='cropped_photos',destination_fold
 
     main_clip = image_clip.set_audio(audio_clip)
 
-    print('making video')
+    
     filename = './'+destination_folder+'/'+subject+'.mp4'
-    print(filename)
-    main_clip.write_videofile(filename,fps=24)
+    
+    main_clip.write_videofile(filename,fps=24,logger=None)
 
 
 
@@ -39,6 +40,6 @@ def video_maker(subject,source_folder_location='cropped_photos',destination_fold
 if __name__ == '__main__':
     
     video_maker('test')
-
+    print('Done!')
 
 
