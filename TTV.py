@@ -3,7 +3,7 @@ import image_scrapper
 import data_scrapper_2
 import image_scrapper_extenction
 import os
-import time
+
 
 
 def TTV(subject):
