@@ -1,6 +1,5 @@
-from image_scrapper import folder_renewer
+
 import wikipedia
-from gtts import gTTS
 
 
 
@@ -53,8 +52,14 @@ def summary_filter(summary_text):
 
 
 def text_to_audio(text):
+    from image_scrapper import folder_renewer
+    from translate import translate
+    from gtts import gTTS
+
+
     folder_renewer('speech')
     text = summary_filter(text)
+    text = translate(text)
     text_to_speech = gTTS(text,tld='co.in',lang='hi')
     text_to_speech.save('./speech/speech.mp3')   
     
