@@ -76,7 +76,6 @@ def image_scrapper(subject,download_location = 'photos'):
 
         image_url_downloader(image_url_list,download_location)
 
-        #Now with an extension for later making them into videos
 
     except Exception as err:
         print(err)
