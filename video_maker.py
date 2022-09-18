@@ -1,5 +1,5 @@
 
-from asyncio.log import logger
+
 import os
 from moviepy.editor import *
 from image_scrapper import folder_renewer
